@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ProductReviewManagement
 {
-        class Program
+       public class Program
         {
             static void Main(string[] args)
             {
@@ -33,7 +33,10 @@ namespace ProductReviewManagement
                 {
                     Console.WriteLine("Product id is = " + listData.ProductId + "User id is = " + listData.UserId + "Rating is = " + listData.Rating + " Review is = " + listData.Review + " isLike = " + listData.isLike);
                 }
-            }
+
+            Management management = new Management();
+            management.TopRecords(list);
+        }
         }
 }
 
