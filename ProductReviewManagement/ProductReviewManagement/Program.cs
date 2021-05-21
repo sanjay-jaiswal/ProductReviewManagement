@@ -52,6 +52,13 @@ namespace ProductReviewManagement
             Console.WriteLine("Records with true review are : \n");
             DataTable table = management.AddIntoDataTable(list);
             management.RetrieveIsLikeTrueProductsFromDataTable(table);
+
+            //Average rating of each product id.
+            Console.WriteLine("Average rating of each product id are : \n");
+            management.GetAverageRatingOfEachProductId(table);
+
+
+
         }
     }
 }

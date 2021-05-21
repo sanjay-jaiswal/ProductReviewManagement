@@ -130,5 +130,19 @@ namespace ProductReviewManagement
             }
         }
 
+        /// <summary>
+        /// Average rating of each product id.
+        /// </summary>
+        /// <param name="table"></param>
+        public void GetAverageRatingOfEachProductId(DataTable table)
+        {
+            var recordedData = from products in table.AsEnumerable()
+                               group products by products.Field<int>("ProductId") into g
+                               select new { ProductId = g.Key, Average = g.Average(a => a.Field<double>("Rating")) };
+            foreach (var row in recordedData)
+            {
+                Console.Write("ProductId : "+row.ProductId + "\t" +"Average Rating : "+ row.Average + "\n");
+            }
+        }
     }
 }
