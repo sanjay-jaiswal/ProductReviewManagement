@@ -80,44 +80,53 @@ namespace ProductReviewManagement
             Console.WriteLine("\nAfter skipping top 5 records from list : ");
             Display(skip5Records);
         }
-
+        
         /// <summary>
-        /// Creating data table.
+        /// Add into data table
         /// </summary>
-        public void CreateDataTable()
+        /// <param name="listProductReviews"></param>
+        /// <returns></returns>
+        public DataTable AddIntoDataTable(List<ProductReview> listProductReviews)
         {
-            //Declaring Data table column
-            DataTable tableData = new DataTable();
-            tableData.Columns.Add("ProducID");
-            tableData.Columns.Add("UserID");
-            tableData.Columns.Add("Rating");
-            tableData.Columns.Add("Review");
-            tableData.Columns.Add("isLike");
-            //Adding data in rows
-            tableData.Rows.Add(5, 7, 4, "Bad", false);
-            tableData.Rows.Add(3, 6, 15, "Good", true);
-            tableData.Rows.Add(2, 5, 18, "Good", true);
-            tableData.Rows.Add(4, 4, 17, "Good", true);
-            tableData.Rows.Add(8, 3, 6, "Bad", false);
-            tableData.Rows.Add(7, 2, 10, "Average", true);
-            tableData.Rows.Add(11, 1, 10, "Average", true);
-            tableData.Rows.Add(2, 12, 8, "Bad", false);
-            tableData.Rows.Add(6, 10, 10, "Average", true);
-            tableData.Rows.Add(4, 9, 16, "Good", true);
-            tableData.Rows.Add(6, 8, 10, "Average", true);
-            //Display data table of all records
-            DisplayDataTable(tableData);
-        }
-
-        public void DisplayDataTable(DataTable table)
-        {
-            var dataStore = (from products in table.AsEnumerable()
-                           select products);
-
-            Console.WriteLine("\nAll Data Table Records are : ");
-            foreach (DataRow row in dataStore)
+            DataTable table = new DataTable();
+            table.Columns.Add("ProductId", typeof(int));
+            table.Columns.Add("UserId", typeof(int));
+            table.Columns.Add("Rating", typeof(double));
+            table.Columns.Add("Review", typeof(string));
+            table.Columns.Add("isLike", typeof(bool));
+            foreach (ProductReview product in listProductReviews)
             {
-                Console.WriteLine("ProducID = {0}, UserID = {1}, Rating = {2}, Review = {3}, isLike = {4}", row["ProducID"], row["UserID"], row["Rating"], row["Review"], row["isLike"]);
+                table.Rows.Add(product.ProductId, product.UserId, product.Rating, product.Review, product.isLike);
+            }
+            return table;
+        }
+        /// <summary>
+        /// Retrieve all data from datatable
+        /// </summary>
+        /// <param name="table"></param>
+        public void RetriveData(DataTable table)
+        {
+            foreach (DataRow row in table.Rows)
+            {
+                foreach (DataColumn column in table.Columns)
+                {
+                    Console.Write(row[column] + "\t");
+                }
+                Console.WriteLine();
+            }
+        }
+        /// <summary>
+        /// Retrive records if isLike = true
+        /// </summary>
+        /// <param name="table"></param>
+        public void RetrieveIsLikeTrueProductsFromDataTable(DataTable table)
+        {
+            var productNames = from products in table.AsEnumerable()
+                               where products.Field<bool>("IsLike") == true
+                               select products;
+            foreach (var row in productNames)
+            {
+                Console.Write("ProductId is : "+row.Field<int>("ProductId") + "\t" +"UserId is: "+ row.Field<int>("UserId") + "\t" + "Rating is : "+row.Field<double>("Rating") + "\t" +"Review is : "+ row.Field<string>("Review") + "\t" + "isLike value : "+row.Field<bool>("IsLike") + "\n");
             }
         }
 

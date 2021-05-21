@@ -46,8 +46,12 @@ namespace ProductReviewManagement
             management.SkipTopFiveRecords(list);
 
             //Data table
-            management.CreateDataTable();
+            //management.AddIntoDataTable(list);
 
+            //Retrieves products with isLike = true.
+            Console.WriteLine("Records with true review are : \n");
+            DataTable table = management.AddIntoDataTable(list);
+            management.RetrieveIsLikeTrueProductsFromDataTable(table);
         }
     }
 }
