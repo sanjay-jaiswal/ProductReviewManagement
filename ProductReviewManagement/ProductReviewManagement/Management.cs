@@ -159,5 +159,22 @@ namespace ProductReviewManagement
                 Console.Write("ProductId is : " + row.Field<int>("ProductId") + "\t" + "UserId is: " + row.Field<int>("UserId") + "\t" + "Rating is : " + row.Field<double>("Rating") + "\t" + "Review is : " + row.Field<string>("Review") + "\t" + "isLike value : " + row.Field<bool>("IsLike") + "\n");
             }
         }
+
+        /// <summary>
+        /// Add some data into table and pretrive by id.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="table"></param>
+        public void RetriveByProductsId(int userId, DataTable table)
+        {
+            var recodedData = from products in table.AsEnumerable()
+                              where products.Field<int>("UserId") == userId
+                              orderby products.Field<double>("Rating")
+                              select products;
+            foreach (var row in recodedData)
+            {
+                Console.Write("ProductId is : "+row.Field<int>("ProductId") + "\t" +"UserID is : "+ row.Field<int>("UserId") + "\t" +"Rating is : "+ row.Field<double>("Rating") + "\t" +"Review is : "+ row.Field<string>("Review") + "\t" +"isLike Value : "+ row.Field<bool>("IsLike") + "\n");
+            }
+        }
     }
 }
