@@ -144,5 +144,20 @@ namespace ProductReviewManagement
                 Console.Write("ProductId : "+row.ProductId + "\t" +"Average Rating : "+ row.Average + "\n");
             }
         }
+
+        /// <summary>
+        /// Display all productId who's rating is nice.
+        /// </summary>
+        /// <param name="table"></param>
+        public void RetriveAllProductsWithNiceReview(DataTable table)
+        {
+            var recordedData = from products in table.AsEnumerable()
+                               where products.Field<string>("Review").Contains("Nice")
+                               select products;
+            foreach (var row in recordedData)
+            {
+                Console.Write("ProductId is : " + row.Field<int>("ProductId") + "\t" + "UserId is: " + row.Field<int>("UserId") + "\t" + "Rating is : " + row.Field<double>("Rating") + "\t" + "Review is : " + row.Field<string>("Review") + "\t" + "isLike value : " + row.Field<bool>("IsLike") + "\n");
+            }
+        }
     }
 }
