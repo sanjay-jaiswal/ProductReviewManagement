@@ -38,7 +38,11 @@ namespace ProductReviewManagement
             Management management = new Management();
             management.TopRecords(list);
             management.RecordsGreaterThan3WithId(list);
+<<<<<<< HEAD
             management.RetriveEachRevieCountWithId(list);
+=======
+            management.RetrieveOnlyProductdAndReview(list);
+>>>>>>> UC5_RetriveOnlyProductIdAndReview
             }
        }
 }
