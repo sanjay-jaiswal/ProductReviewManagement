@@ -40,6 +40,8 @@ namespace ProductReviewManagement
             management.RecordsGreaterThan3WithId(list);
             management.RetriveEachRevieCountwWithId(list);
             management.RetrieveOnlyProductdAndReview(list);
+
+            //Will skip top 5 records from list and display rest data.
             management.SkipTopFiveRecords(list);
             }
        }
