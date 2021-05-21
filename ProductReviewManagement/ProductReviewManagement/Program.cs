@@ -38,6 +38,7 @@ namespace ProductReviewManagement
             Management management = new Management();
             management.TopRecords(list);
             management.RecordsGreaterThan3WithId(list);
+            management.RetrieveOnlyProductdAndReview(list);
             }
        }
 }

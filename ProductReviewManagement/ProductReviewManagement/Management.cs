@@ -41,5 +41,33 @@ namespace ProductReviewManagement
             Console.WriteLine("\nRecords who's rating are greater than 3 with product id 1 , 4 or 9 : ");
             Display(recordData);
         }
+
+        /// <summary>
+        /// Retrive each product review id with count.
+        /// </summary>
+        /// <param name="listProductReviews"></param>
+        public void RetriveEachRevieCountwWithId(List<ProductReview> countProductReviews)
+        {
+            var countDataRecord = countProductReviews.GroupBy(x => x.ProductId).Select(x => new { ProductId = x.Key, Count = x.Count() });
+            Console.WriteLine("\nProduct id and count are : ");
+            foreach (var countList in countDataRecord)
+            {
+                Console.WriteLine(countList.ProductId + " = " + countList.Count);
+            }
+        }
+
+        /// <summary>
+        /// Retrive only product id and review from list using linq.
+        /// </summary>
+        /// <param name="listProductReviews"></param>
+        public void RetrieveOnlyProductdAndReview(List<ProductReview> onlyIdAndReview)
+        {
+            var dataStore = onlyIdAndReview.Select(x => new { ProductId = x.ProductId, Review = x.Review });
+            Console.WriteLine("\nProduct id and review are : ");
+            foreach (var list in dataStore)
+            {
+                Console.WriteLine(list.ProductId + "======================>>>" + list.Review);
+            }
+        }
     }
 }
