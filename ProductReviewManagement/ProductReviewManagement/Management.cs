@@ -30,6 +30,16 @@ namespace ProductReviewManagement
             Console.WriteLine("\nTop 3 records are : ");
             Display(recordData);
         }
-    }
 
+        /// <summary>
+        /// Retrive the Records who's rating is Greater Than 3 With Id.
+        /// </summary>
+        /// <param name="listProductReviews"></param>
+        public void RecordsGreaterThan3WithId(List<ProductReview> retriveWithProductReviews)
+        {
+            var recordData = (from productReview in retriveWithProductReviews where (productReview.ProductId == 1 || productReview.ProductId == 4 || productReview.ProductId == 9) && productReview.Rating > 3 select productReview).ToList();
+            Console.WriteLine("\nRecords who's rating are greater than 3 with product id 1 , 4 or 9 : ");
+            Display(recordData);
+        }
+    }
 }

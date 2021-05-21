@@ -28,6 +28,7 @@ namespace ProductReviewManagement
             new ProductReview() { ProductId = 14, UserId = 1, Rating = 5, Review = "Average", isLike=true },
             new ProductReview() { ProductId = 15, UserId = 1, Rating = 4, Review = "Bad", isLike=true }
             };
+
                 Console.WriteLine("Table rows are :  ");
                 foreach (var listData in list)
                 {
@@ -36,7 +37,8 @@ namespace ProductReviewManagement
 
             Management management = new Management();
             management.TopRecords(list);
-        }
-        }
+            management.RecordsGreaterThan3WithId(list);
+            }
+       }
 }
 
